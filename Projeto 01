@@ -1,0 +1,18 @@
+void setup()
+
+{
+pinMode (8, INPUT);
+pinMode(3, OUTPUT);
+pinMode(13, OUTPUT);
+}
+void loop() {
+if (digitalRead(8)== HIGH) {
+digitalWrite(13, HIGH);
+digitalWrite(3, LOW);
+}
+else {
+digitalWrite(13, LOW);
+digitalWrite(3, HIGH);
+}
+
+}
