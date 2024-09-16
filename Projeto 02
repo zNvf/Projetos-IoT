@@ -1,0 +1,48 @@
+float tempo;
+float distancia = 0;
+int trig = 9;
+int echo = 10;
+int verm = 13;
+int ama = 12;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(trig, OUTPUT);
+  pinMode(echo, INPUT);
+  pinMode(verm, OUTPUT);
+  pinMode(ama, OUTPUT);
+}
+
+void loop() {
+  
+  digitalWrite(trig, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig, LOW);
+  
+  tempo = pulseIn(echo, HIGH);
+  distancia = (tempo / 2) * 0.0343;
+  
+  if (distancia <= 60) {
+    digitalWrite(verm, HIGH);
+    digitalWrite(ama, LOW);
+    delay(1000);
+    
+  digitalWrite(verm, HIGH);
+  digitalWrite(ama, LOW);
+  delay(1000);
+  } else {
+    digitalWrite(verm, LOW);
+    digitalWrite(ama, LOW);
+  }
+  
+  if (distancia > 60) {
+    digitalWrite(ama, HIGH);
+    delay(1000);
+  } else {
+    digitalWrite(verm, LOW);
+  }
+}
+
+
